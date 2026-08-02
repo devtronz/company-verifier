@@ -18,10 +18,27 @@ html, body, [class*="css"]{
 }
 
 /* Main */
+@media (max-width:768px){
 
-.block-container{
-    max-width:1280px;
-    padding-top:2rem;
+.main-title{
+    font-size:30px;
+}
+
+.sub-title{
+    font-size:15px;
+}
+
+h1{
+    font-size:24px;
+}
+
+h2{
+    font-size:20px;
+}
+
+h3{
+    font-size:18px;
+}
 }
 
 /* Sidebar */
