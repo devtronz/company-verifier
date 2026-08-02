@@ -2,6 +2,7 @@
 import json
 import streamlit as st
 from google import genai
+from domain import analyze_domain
 
 # -------------------------
 # PAGE CONFIG
