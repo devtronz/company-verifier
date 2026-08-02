@@ -1,19 +1,118 @@
+
 import json
 import streamlit as st
 from google import genai
 
-# -----------------------
+# -------------------------
 # PAGE CONFIG
-# -----------------------
+# -------------------------
 st.set_page_config(
-    page_title="AI JobVerify",
+    page_title="🛡️ AI JobVerify",
     page_icon="🛡️",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
-st.title("🛡️ AI JobVerify")
-st.caption("One Search. Verify Everything.")
+# -------------------------
+# CUSTOM CSS
+# -------------------------
+st.markdown("""
+<style>
+.main {
+    background-color: #0E1117;
+}
 
+.block-container {
+    padding-top: 1rem;
+}
+
+.title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #00E5FF;
+}
+
+.subtitle {
+    color: #B0B0B0;
+    font-size: 18px;
+}
+
+div[data-testid="stMetric"] {
+    background: #161B22;
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #30363D;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# -------------------------
+# GEMINI
+# -------------------------
+client = genai.Client(
+    api_key=st.secrets["GEMINI_API_KEY"]
+)
+
+MODEL = "gemini-3.5-flash"
+
+# -------------------------
+# SIDEBAR
+# -------------------------
+with st.sidebar:
+    st.title("🛡️ AI JobVerify")
+    st.caption("One Search. Verify Everything.")
+
+    st.divider()
+
+    st.subheader("Features")
+
+    st.markdown("""
+✅ Company Analysis
+
+✅ Job Verification
+
+✅ Domain Intelligence
+
+✅ Official Social Media
+
+✅ Trust Score
+
+✅ Risk Analysis
+
+✅ AI Recommendation
+""")
+
+    st.divider()
+
+    st.success("Gemini Connected")
+
+# -------------------------
+# HEADER
+# -------------------------
+st.markdown(
+    "<div class='title'>🛡️ AI JobVerify</div>",
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    "<div class='subtitle'>AI-powered Company & Job Verification Platform</div>",
+    unsafe_allow_html=True
+)
+
+st.write("")
+
+# -------------------------
+# SEARCH
+# -------------------------
+query = st.text_input(
+    "",
+    placeholder="Search company, website, recruiter email, job URL or job description..."
+)
+
+analyze = st.button(
+    "🔍 Analyze",
+    use_container_width=True
+)
 # -----------------------
 # API KEY
 # -----------------------
