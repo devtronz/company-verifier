@@ -190,3 +190,45 @@ Return ONLY valid JSON.
     st.write(data["analysis"])
 
     st.success("Analysis Complete")
+
+st.divider()
+
+tab_company, tab_domain = st.tabs([
+    "🏢 Company",
+    "🌐 Domain"
+])
+
+with tab_company:
+    st.write(data["summary"])
+
+with tab_domain:
+
+    if "." in query:
+
+        info = analyze_domain(query)
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.metric("Domain", info["domain"])
+            st.metric("Registrar", info["registrar"])
+            st.metric("IP Address", info["ip"])
+
+        with col2:
+            st.metric("HTTPS", info["https"])
+            st.metric("Status", info["status"])
+
+        st.write("### Created")
+        st.write(info["creation_date"])
+
+        st.write("### Expires")
+        st.write(info["expiration_date"])
+
+        st.write("### Name Servers")
+        st.write(info["ns"])
+
+        st.write("### Mail Servers")
+        st.write(info["mx"])
+
+    else:
+        st.info("Enter a domain like google.com")
