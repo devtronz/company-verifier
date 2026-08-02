@@ -7,15 +7,12 @@ from domain import analyze_domain
 # -------------------------
 # PAGE CONFIG
 # -------------------------
-st.markdown("""
-<div class="main-title">
-🛡️ AI JobVerify
-</div>
-
-<div class="sub-title">
-AI-powered Company • Domain • Job Verification Platform
-</div>
-""", unsafe_allow_html=True)
+st.set_page_config(
+    page_title="🛡️ AI JobVerify",
+    page_icon="🛡️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # -------------------------
 # CUSTOM CSS
@@ -151,17 +148,15 @@ with st.sidebar:
 # -------------------------
 # HEADER
 # -------------------------
-st.markdown(
-    "<div class='title'>🛡️ AI JobVerify</div>",
-    unsafe_allow_html=True
-)
+st.markdown("""
+<div class="main-title">
+🛡️ AI JobVerify
+</div>
 
-st.markdown(
-    "<div class='subtitle'>AI-powered Company & Job Verification Platform</div>",
-    unsafe_allow_html=True
-)
-
-st.write("")
+<div class="sub-title">
+AI-powered Company • Domain • Job Verification Platform
+</div>
+""", unsafe_allow_html=True)
 
 # -----------------------
 # SEARCH BOX
