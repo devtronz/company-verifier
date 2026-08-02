@@ -110,75 +110,32 @@ Return ONLY valid JSON.
     # METRICS
     # -----------------------
 
-    c1, c2, c3 = st.columns(3)
+    # -----------------------
+# PREMIUM RESULT
+# -----------------------
 
-    c1.metric(
-        "Trust Score",
-        f"{data['trust_score']}/100"
+st.markdown("## 🛡 AI Verification Result")
+
+st.progress(data["trust_score"] / 100)
+
+st.success(
+    f"Trust Score: **{data['trust_score']}/100** • {data['recommendation']}"
+)
+
+st.write("")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("🛡 Trust Score", f"{data['trust_score']}/100")
+
+with col2:
+    st.metric("⚠ Risk", data["risk"])
+
+with col3:
+    st.metric(
+        "🌐 Domain",
+        "Verified" if "." in query else "N/A"
     )
-
-    c2.metric(
-        "Risk",
-        data["risk"]
-    )
-
-    c3.metric(
-        "Recommendation",
-        data["recommendation"]
-    )
-
-    st.divider()
-
-    st.subheader("Summary")
-    st.write(data["summary"])
-
-    st.subheader("Analysis")
-    st.write(data["analysis"])
-
-    st.success("Analysis Complete")
 
 st.divider()
-
-tab_company, tab_domain = st.tabs([
-    "🏢 Company",
-    "🌐 Domain"
-])
-
-with tab_company:
-    if "data" in locals():
-        st.subheader("Company Summary")
-        st.write(data.get("summary", "No summary available."))
-    else:
-        st.info("Click 'Analyze' to view company information.")
-
-with tab_domain:
-
-    if "." in query:
-
-        info = analyze_domain(query)
-
-        col1, col2 = st.columns(2)
-
-        with col1:
-            st.metric("Domain", info["domain"])
-            st.metric("Registrar", info["registrar"])
-            st.metric("IP Address", info["ip"])
-
-        with col2:
-            st.metric("HTTPS", info["https"])
-            st.metric("Status", info["status"])
-
-        st.write("### Created")
-        st.write(info["creation_date"])
-
-        st.write("### Expires")
-        st.write(info["expiration_date"])
-
-        st.write("### Name Servers")
-        st.write(info["ns"])
-
-        st.write("### Mail Servers")
-        st.write(info["mx"])
-
-    else:
-        st.info("Enter a domain like google.com")
