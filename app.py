@@ -55,48 +55,7 @@ query = st.text_input(
 
 data = {}
 
-analyze = st.button("🔍 Analyze", use_container_width=True)
-
-# -----------------------
-# PREMIUM DASHBOARD
-# -----------------------
-
-st.markdown("## 📊 Verification Dashboard")
-
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.metric(
-        label="🛡 Trust Score",
-        value=f"{data.get('trust_score', '--')}/100",
-        delta="AI Score"
-    )
-
-with col2:
-    st.metric(
-        label="⚠ Risk Level",
-        value=data.get("risk", "--"),
-        delta="Assessment"
-    )
-
-with col3:
-    domain_status = "Verified" if "." in query else "N/A"
-
-    st.metric(
-        label="🌐 Domain",
-        value=domain_status,
-        delta="Security"
-    )
-
-with col4:
-    st.metric(
-        label="🤖 Recommendation",
-        value=data.get("recommendation", "--"),
-        delta="AI Verdict"
-    )
-
-st.divider()
-
+analyze = st.button("🔍 Analyze", use_container_width=True) 
 
 
 # -----------------------
