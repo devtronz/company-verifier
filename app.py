@@ -103,13 +103,6 @@ st.markdown(
 st.write("")
 
 # -----------------------
-# API KEY
-# -----------------------
-API_KEY = st.secrets["GEMINI_API_KEY"]
-
-client = genai.Client(api_key=API_KEY)
-
-# -----------------------
 # SEARCH BOX
 # -----------------------
 query = st.text_input(
