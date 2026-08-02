@@ -1,18 +1,22 @@
-
 import json
 import streamlit as st
 from google import genai
 from domain import analyze_domain
 
-# -------------------------
+# ===================================
 # PAGE CONFIG
-# -------------------------
+# ===================================
+
 st.set_page_config(
-    page_title="🛡️ AI JobVerify",
-    page_icon="🛡️",
+    page_title="🛡 AI JobVerify",
+    page_icon="🛡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# ===================================
+# LOAD CSS
+# ===================================
 
 def load_css():
     with open("assets/style.css") as f:
@@ -23,9 +27,48 @@ def load_css():
 
 load_css()
 
-# -------------------------
+# ===================================
+# GEMINI
+# ===================================
+
+client = genai.Client(
+    api_key=st.secrets["GEMINI_API_KEY"]
+)
+
+MODEL = "gemini-3.5-flash"
+
+# ===================================
+# SIDEBAR
+# ===================================
+
+with st.sidebar:
+
+    st.title("🛡 AI JobVerify")
+
+    st.caption("One Search. Verify Everything.")
+
+    st.divider()
+
+    st.markdown("### Features")
+
+    st.markdown("""
+✅ Company Verification
+
+✅ Domain Intelligence
+
+✅ AI Analysis
+
+✅ Trust Score
+
+✅ Risk Detection
+
+✅ Recruiter Verification
+""")
+
+# ===================================
 # HEADER
-# -------------------------
+# ===================================
+
 st.markdown("""
 <div class="main-title">
 🛡 AI JobVerify
@@ -36,106 +79,260 @@ Verify Companies • Domains • Recruiters with AI
 </div>
 """, unsafe_allow_html=True)
 
-# -------------------------
-# GEMINI
-# -------------------------
-client = genai.Client(
-    api_key=st.secrets["GEMINI_API_KEY"]
+# ===================================
+# SEARCH
+# ===================================
+
+query = st.text_input(
+    "",
+    placeholder="Search company, website, recruiter email or job..."
 )
 
-MODEL = "gemini-3.5-flash"
-
-# -----------------------
-# SEARCH BOX
-# -----------------------
-query = st.text_input(
-    "Search",
-    placeholder="Company name, website, recruiter email or job..."
+analyze = st.button(
+    "🚀 Analyze",
+    use_container_width=True
 )
 
 data = {}
 
-analyze = st.button("🔍 Analyze", use_container_width=True) 
-
-
-# -----------------------
+# ===================================
 # ANALYSIS
-# -----------------------
+# ===================================
+
 if analyze:
 
     if not query.strip():
         st.warning("Please enter a search query.")
         st.stop()
 
-    with st.spinner("Analyzing..."):
+    with st.spinner("🔎 Verifying..."):
 
         prompt = f"""
 You are an AI Company Verification Assistant.
 
-Analyze:
+Analyze this query:
 
 {query}
 
 Return ONLY valid JSON.
 
 {{
-  "summary":"...",
-  "trust_score":80,
-  "risk":"Low",
-  "recommendation":"Safe",
-  "analysis":"..."
+    "summary":"Short company summary",
+    "trust_score":85,
+    "risk":"Low",
+    "recommendation":"Safe",
+    "analysis":"Detailed explanation."
 }}
 """
 
         try:
 
             response = client.models.generate_content(
-                model="gemini-3.5-flash",
+                model=MODEL,
                 contents=prompt
             )
 
             text = response.text.strip()
-
             text = text.replace("```json", "")
             text = text.replace("```", "")
 
             data = json.loads(text)
 
         except Exception as e:
-
-            st.error(e)
+            st.error(f"Analysis failed: {e}")
             st.stop()
 
-    # -----------------------
+    # ===================================
+    # RESULT HEADER
+    # ===================================
+
+    st.markdown("## 🛡 AI Verification Result")
+
+    trust = int(data.get("trust_score", 0))
+
+    st.progress(trust / 100)
+
+    if trust >= 80:
+        st.success(f"Trust Score: **{trust}/100** • Highly Trusted")
+    elif trust >= 60:
+        st.warning(f"Trust Score: **{trust}/100** • Needs Review")
+    else:
+        st.error(f"Trust Score: **{trust}/100** • High Risk")
+
+    st.write("")
+
+    # ===================================
     # METRICS
-    # -----------------------
+    # ===================================
 
-    # -----------------------
-# PREMIUM RESULT
-# -----------------------
+    c1, c2, c3 = st.columns(3)
 
-st.markdown("## 🛡 AI Verification Result")
+    with c1:
+        st.metric(
+            "🛡 Trust Score",
+            f"{trust}/100"
+        )
 
-st.progress(data["trust_score"] / 100)
+    with c2:
+        st.metric(
+            "⚠ Risk",
+            data.get("risk", "Unknown")
+        )
 
-st.success(
-    f"Trust Score: **{data['trust_score']}/100** • {data['recommendation']}"
-)
+    with c3:
+        st.metric(
+            "🤖 Recommendation",
+            data.get("recommendation", "Unknown")
+        )
 
-st.write("")
+    st.divider()
 
-col1, col2, col3 = st.columns(3)
+    # ===================================
+    # SUMMARY & ANALYSIS
+    # ===================================
 
-with col1:
-    st.metric("🛡 Trust Score", f"{data['trust_score']}/100")
+    left, right = st.columns(2)
 
-with col2:
-    st.metric("⚠ Risk", data["risk"])
+    with left:
 
-with col3:
-    st.metric(
-        "🌐 Domain",
-        "Verified" if "." in query else "N/A"
-    )
+        st.subheader("📋 Summary")
 
-st.divider()
+        st.info(
+            data.get(
+                "summary",
+                "No summary available."
+            )
+        )
+
+    with right:
+
+        st.subheader("🤖 AI Analysis")
+
+        st.success(
+            data.get(
+                "analysis",
+                "No analysis available."
+            )
+        )
+
+    st.divider()
+
+# ===================================
+# COMPANY & DOMAIN TABS
+# ===================================
+
+tab_company, tab_domain = st.tabs([
+    "🏢 Company",
+    "🌐 Domain Intelligence"
+])
+
+# ===================================
+# COMPANY TAB
+# ===================================
+
+with tab_company:
+
+    st.subheader("🏢 Company Overview")
+
+    st.markdown(f"""
+### AI Summary
+
+{data.get("summary","No information available.")}
+
+---
+
+### AI Recommendation
+
+**{data.get("recommendation","Unknown")}**
+
+### Risk Level
+
+**{data.get("risk","Unknown")}**
+""")
+
+# ===================================
+# DOMAIN TAB
+# ===================================
+
+with tab_domain:
+
+    if "." in query:
+
+        info = analyze_domain(query)
+
+        st.subheader("🌐 Domain Intelligence")
+
+        c1, c2 = st.columns(2)
+
+        with c1:
+
+            st.metric(
+                "🌍 Domain",
+                info.get("domain","Unknown")
+            )
+
+            st.metric(
+                "🏢 Registrar",
+                info.get("registrar","Unknown")
+            )
+
+            st.metric(
+                "🌐 IP Address",
+                info.get("ip","Unknown")
+            )
+
+        with c2:
+
+            st.metric(
+                "🔒 HTTPS",
+                info.get("https","Unknown")
+            )
+
+            st.metric(
+                "📡 Status",
+                str(info.get("status","Unknown"))
+            )
+
+        st.divider()
+
+        left, right = st.columns(2)
+
+        with left:
+
+            st.markdown("### 📅 Dates")
+
+            st.write("**Created**")
+            st.write(info.get("creation_date","Unknown"))
+
+            st.write("")
+
+            st.write("**Expires**")
+            st.write(info.get("expiration_date","Unknown"))
+
+        with right:
+
+            st.markdown("### 🌐 DNS")
+
+            st.write("**Name Servers**")
+
+            if info.get("ns"):
+                for server in info["ns"]:
+                    st.write("•", server)
+            else:
+                st.write("No records found")
+
+            st.write("")
+
+            st.write("**Mail Servers**")
+
+            if info.get("mx"):
+                for server in info["mx"]:
+                    st.write("•", server)
+            else:
+                st.write("No records found")
+
+    else:
+
+        st.info(
+            "Enter a domain name (example: google.com) to view Domain Intelligence."
+        )
