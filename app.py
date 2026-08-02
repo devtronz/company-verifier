@@ -114,36 +114,45 @@ client = genai.Client(
 
 MODEL = "gemini-3.5-flash"
 
-# -------------------------
-# SIDEBAR
-# -------------------------
-with st.sidebar:
-    st.title("🛡️ AI JobVerify")
-    st.caption("One Search. Verify Everything.")
+# -----------------------
+# PREMIUM DASHBOARD
+# -----------------------
 
-    st.divider()
+st.markdown("## 📊 Verification Dashboard")
 
-    st.subheader("Features")
+col1, col2, col3, col4 = st.columns(4)
 
-    st.markdown("""
-✅ Company Analysis
+with col1:
+    st.metric(
+        label="🛡 Trust Score",
+        value=f"{data.get('trust_score', '--')}/100",
+        delta="AI Score"
+    )
 
-✅ Job Verification
+with col2:
+    st.metric(
+        label="⚠ Risk Level",
+        value=data.get("risk", "--"),
+        delta="Assessment"
+    )
 
-✅ Domain Intelligence
+with col3:
+    domain_status = "Verified" if "." in query else "N/A"
 
-✅ Official Social Media
+    st.metric(
+        label="🌐 Domain",
+        value=domain_status,
+        delta="Security"
+    )
 
-✅ Trust Score
+with col4:
+    st.metric(
+        label="🤖 Recommendation",
+        value=data.get("recommendation", "--"),
+        delta="AI Verdict"
+    )
 
-✅ Risk Analysis
-
-✅ AI Recommendation
-""")
-
-    st.divider()
-
-    st.success("Gemini Connected")
+st.divider()
 
 # -------------------------
 # HEADER
