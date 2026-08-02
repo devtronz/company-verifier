@@ -89,11 +89,11 @@ st.divider()
 # -------------------------
 st.markdown("""
 <div class="main-title">
-🛡️ AI JobVerify
+🛡 AI JobVerify
 </div>
 
 <div class="sub-title">
-AI-powered Company • Domain • Job Verification Platform
+Verify Companies • Domains • Recruiters with AI
 </div>
 """, unsafe_allow_html=True)
 
