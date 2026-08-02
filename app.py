@@ -101,18 +101,6 @@ st.markdown(
 
 st.write("")
 
-# -------------------------
-# SEARCH
-# -------------------------
-query = st.text_input(
-    "",
-    placeholder="Search company, website, recruiter email, job URL or job description..."
-)
-
-analyze = st.button(
-    "🔍 Analyze",
-    use_container_width=True
-)
 # -----------------------
 # API KEY
 # -----------------------
