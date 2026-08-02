@@ -7,12 +7,15 @@ from domain import analyze_domain
 # -------------------------
 # PAGE CONFIG
 # -------------------------
-st.set_page_config(
-    page_title="🛡️ AI JobVerify",
-    page_icon="🛡️",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+st.markdown("""
+<div class="main-title">
+🛡️ AI JobVerify
+</div>
+
+<div class="sub-title">
+AI-powered Company • Domain • Job Verification Platform
+</div>
+""", unsafe_allow_html=True)
 
 # -------------------------
 # CUSTOM CSS
