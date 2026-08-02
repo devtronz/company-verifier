@@ -199,7 +199,11 @@ tab_company, tab_domain = st.tabs([
 ])
 
 with tab_company:
-    st.write(data["summary"])
+    if "data" in locals():
+        st.subheader("Company Summary")
+        st.write(data.get("summary", "No summary available."))
+    else:
+        st.info("Click 'Analyze' to view company information.")
 
 with tab_domain:
 
