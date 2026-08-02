@@ -229,26 +229,22 @@ tab_company, tab_domain = st.tabs([
 # ===================================
 # COMPANY TAB
 # ===================================
+st.subheader("🏢 Company Overview")
 
-with tab_company:
+c1, c2 = st.columns(2)
 
-    st.subheader("🏢 Company Overview")
+with c1:
+    st.info(data.get("summary", "No summary available."))
 
-    st.markdown(f"""
-### AI Summary
+with c2:
+    st.success(
+        f"""
+**Recommendation:** {data.get("recommendation","Unknown")}
 
-{data.get("summary","No information available.")}
+**Risk:** {data.get("risk","Unknown")}
+"""
+    )
 
----
-
-### AI Recommendation
-
-**{data.get("recommendation","Unknown")}**
-
-### Risk Level
-
-**{data.get("risk","Unknown")}**
-""")
 
 # ===================================
 # DOMAIN TAB
