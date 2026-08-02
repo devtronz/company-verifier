@@ -115,6 +115,18 @@ client = genai.Client(
 MODEL = "gemini-3.5-flash"
 
 # -----------------------
+# SEARCH BOX
+# -----------------------
+query = st.text_input(
+    "Search",
+    placeholder="Company name, website, recruiter email or job..."
+)
+
+data = {}
+
+analyze = st.button("🔍 Analyze", use_container_width=True)
+
+# -----------------------
 # PREMIUM DASHBOARD
 # -----------------------
 
@@ -166,18 +178,6 @@ st.markdown("""
 AI-powered Company • Domain • Job Verification Platform
 </div>
 """, unsafe_allow_html=True)
-
-# -----------------------
-# SEARCH BOX
-# -----------------------
-query = st.text_input(
-    "Search",
-    placeholder="Company name, website, recruiter email or job..."
-)
-
-data = {}
-
-analyze = st.button("🔍 Analyze", use_container_width=True)
 
 # -----------------------
 # ANALYSIS
