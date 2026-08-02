@@ -19,31 +19,89 @@ st.set_page_config(
 # -------------------------
 st.markdown("""
 <style>
-.main {
-    background-color: #0E1117;
+
+/* Background */
+.stApp{
+    background: linear-gradient(135deg,#0b1220,#111827,#0f172a);
 }
 
-.block-container {
-    padding-top: 1rem;
+/* Main container */
+.block-container{
+    padding-top:2rem;
+    max-width:1200px;
 }
 
-.title {
-    font-size: 40px;
-    font-weight: 700;
-    color: #00E5FF;
+/* Title */
+.main-title{
+    font-size:3rem;
+    font-weight:800;
+    color:white;
+    margin-bottom:0;
 }
 
-.subtitle {
-    color: #B0B0B0;
-    font-size: 18px;
+.sub-title{
+    color:#9CA3AF;
+    font-size:1.1rem;
+    margin-bottom:2rem;
 }
 
-div[data-testid="stMetric"] {
-    background: #161B22;
-    border-radius: 12px;
-    padding: 15px;
-    border: 1px solid #30363D;
+/* Sidebar */
+section[data-testid="stSidebar"]{
+    background:#0B1120;
+    border-right:1px solid #1F2937;
 }
+
+/* Search box */
+.stTextInput input{
+    border-radius:14px;
+    border:1px solid #334155;
+    background:#111827;
+    color:white;
+    height:55px;
+    font-size:18px;
+}
+
+/* Button */
+.stButton>button{
+    width:100%;
+    height:55px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(90deg,#3B82F6,#06B6D4);
+    color:white;
+    font-size:18px;
+    font-weight:700;
+}
+
+.stButton>button:hover{
+    transform:translateY(-2px);
+    transition:.25s;
+}
+
+/* Cards */
+div[data-testid="stMetric"]{
+    background:#111827;
+    border:1px solid #1E293B;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+/* Tabs */
+button[data-baseweb="tab"]{
+    font-size:16px;
+    font-weight:600;
+}
+
+/* Info boxes */
+.stAlert{
+    border-radius:14px;
+}
+
+hr{
+    border:1px solid #1F2937;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
