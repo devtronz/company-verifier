@@ -1,1 +1,91 @@
+/* ---------- BACKGROUND ---------- */
 
+.stApp{
+    background: linear-gradient(135deg,#0B1220,#111827,#0F172A);
+}
+
+/* ---------- MAIN ---------- */
+
+.block-container{
+    max-width:1200px;
+    padding-top:2rem;
+}
+
+/* ---------- SIDEBAR ---------- */
+
+section[data-testid="stSidebar"]{
+    background:#08111f;
+    border-right:1px solid #1f2937;
+}
+
+/* ---------- HEADER ---------- */
+
+.main-title{
+    font-size:48px;
+    font-weight:800;
+    color:white;
+    margin-bottom:0;
+}
+
+.sub-title{
+    color:#94A3B8;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+/* ---------- SEARCH ---------- */
+
+.stTextInput input{
+    background:#111827;
+    border:2px solid #334155;
+    border-radius:18px;
+    color:white;
+    height:58px;
+    font-size:18px;
+}
+
+/* ---------- BUTTON ---------- */
+
+.stButton>button{
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:18px;
+    font-size:18px;
+    font-weight:700;
+    color:white;
+    background:linear-gradient(90deg,#2563EB,#06B6D4);
+}
+
+.stButton>button:hover{
+    transform:translateY(-2px);
+    transition:.25s;
+}
+
+/* ---------- METRICS ---------- */
+
+div[data-testid="stMetric"]{
+    background:#111827;
+    border:1px solid #1F2937;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.30);
+}
+
+div[data-testid="stMetric"]:hover{
+    transform:translateY(-4px);
+    transition:.2s;
+}
+
+/* ---------- TABS ---------- */
+
+button[data-baseweb="tab"]{
+    font-size:17px;
+    font-weight:600;
+}
+
+/* ---------- ALERTS ---------- */
+
+.stAlert{
+    border-radius:16px;
+}
