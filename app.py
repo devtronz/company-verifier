@@ -24,6 +24,19 @@ def load_css():
 load_css()
 
 # -------------------------
+# HEADER
+# -------------------------
+st.markdown("""
+<div class="main-title">
+🛡 AI JobVerify
+</div>
+
+<div class="sub-title">
+Verify Companies • Domains • Recruiters with AI
+</div>
+""", unsafe_allow_html=True)
+
+# -------------------------
 # GEMINI
 # -------------------------
 client = genai.Client(
@@ -84,18 +97,7 @@ with col4:
 
 st.divider()
 
-# -------------------------
-# HEADER
-# -------------------------
-st.markdown("""
-<div class="main-title">
-🛡 AI JobVerify
-</div>
 
-<div class="sub-title">
-Verify Companies • Domains • Recruiters with AI
-</div>
-""", unsafe_allow_html=True)
 
 # -----------------------
 # ANALYSIS
