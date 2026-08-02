@@ -175,6 +175,8 @@ query = st.text_input(
     placeholder="Company name, website, recruiter email or job..."
 )
 
+data = {}
+
 analyze = st.button("🔍 Analyze", use_container_width=True)
 
 # -----------------------
