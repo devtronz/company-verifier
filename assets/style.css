@@ -1,40 +1,38 @@
-/* ======================================
-   AI JobVerify Premium Theme
-====================================== */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-html,
-body,
-[class*="css"]{
+*{
     font-family:'Inter',sans-serif;
 }
 
-/* -----------------------------
-   Background
------------------------------- */
+/* Background */
 
 .stApp{
     background:transparent;
 }
 
 /* Dark overlay over video */
+
 .stApp::before{
     content:"";
     position:fixed;
     inset:0;
+    z-index:-1;
+
     background:
-        linear-gradient(
-            rgba(3,7,18,.72),
-            rgba(3,7,18,.55),
-            rgba(3,7,18,.82)
-        );
-    z-index:-2;
+    linear-gradient(
+        180deg,
+        rgba(2,8,23,.55),
+        rgba(2,8,23,.78),
+        rgba(2,8,23,.90)
+    ),
+    radial-gradient(
+        circle at top,
+        rgba(37,99,235,.18),
+        transparent 55%
+    );
 }
 
-/* -----------------------------
-   Container
------------------------------- */
+/* Main */
 
 .block-container{
     max-width:1200px;
@@ -42,197 +40,213 @@ body,
     padding-bottom:3rem;
 }
 
-/* -----------------------------
-   Sidebar
------------------------------- */
+/* Sidebar */
 
 section[data-testid="stSidebar"]{
-    background:rgba(8,15,30,.80);
+    background:rgba(10,15,30,.88);
     backdrop-filter:blur(20px);
-    border-right:1px solid rgba(255,255,255,.08);
 }
 
-/* -----------------------------
-   Hero
------------------------------- */
+/* Header */
 
 .main-title{
     font-size:60px;
     font-weight:900;
-    color:#FFFFFF;
-    line-height:1.05;
-    letter-spacing:-1px;
-    text-shadow:0 10px 30px rgba(0,0,0,.55);
-    margin-bottom:10px;
+    color:white;
+    letter-spacing:-2px;
+    text-shadow:0 0 25px rgba(59,130,246,.45);
 }
 
 .sub-title{
+    font-size:21px;
     color:#E2E8F0;
-    font-size:20px;
-    line-height:1.6;
-    max-width:700px;
-    text-shadow:0 4px 20px rgba(0,0,0,.45);
     margin-bottom:35px;
 }
 
-/* -----------------------------
-   Search Box
------------------------------- */
+/* Search */
 
 .stTextInput input{
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:18px;
-    height:60px;
-    color:white;
-    font-size:18px;
-    padding-left:18px;
-}
 
-.stTextInput input::placeholder{
-    color:#CBD5E1;
+    height:64px;
+
+    border-radius:18px;
+
+    background:rgba(15,23,42,.75);
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    font-size:18px;
+
 }
 
 .stTextInput input:focus{
+
     border:1px solid #38BDF8;
-    box-shadow:0 0 20px rgba(56,189,248,.35);
+
+    box-shadow:0 0 18px rgba(56,189,248,.35);
+
 }
 
-/* -----------------------------
-   Button
------------------------------- */
+/* Button */
 
 .stButton>button{
-    width:100%;
-    height:60px;
+
+    height:64px;
+
     border:none;
+
     border-radius:18px;
+
     color:white;
-    font-size:18px;
+
+    font-size:19px;
+
     font-weight:700;
+
     background:linear-gradient(90deg,#2563EB,#06B6D4);
-    box-shadow:
-        0 0 30px rgba(37,99,235,.25),
-        0 15px 35px rgba(0,0,0,.35);
-    transition:.25s;
+
+    box-shadow:0 15px 35px rgba(37,99,235,.35);
+
+    transition:.3s;
+
 }
 
 .stButton>button:hover{
+
     transform:translateY(-3px);
-    box-shadow:
-        0 0 40px rgba(37,99,235,.45),
-        0 18px 40px rgba(0,0,0,.45);
+
+    box-shadow:0 20px 45px rgba(37,99,235,.55);
+
 }
 
-/* -----------------------------
-   Metric Cards
------------------------------- */
+/* Metric Cards */
 
 div[data-testid="stMetric"]{
-    background:rgba(15,23,42,.55);
-    backdrop-filter:blur(18px);
+
+    background:rgba(15,23,42,.68);
+
+    backdrop-filter:blur(22px);
+
     border-radius:22px;
-    border:1px solid rgba(255,255,255,.10);
-    padding:22px;
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.45),
-        inset 0 1px rgba(255,255,255,.05);
-    transition:.25s;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    padding:20px;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.45);
+
 }
 
 div[data-testid="stMetric"]:hover{
-    transform:translateY(-5px);
-    border-color:#38BDF8;
+
+    transform:translateY(-4px);
+
+    transition:.25s;
+
 }
 
-/* -----------------------------
-   Tabs
------------------------------- */
+/* Tabs */
 
 .stTabs{
-    background:rgba(15,23,42,.30);
-    backdrop-filter:blur(15px);
+
+    background:rgba(15,23,42,.60);
+
+    backdrop-filter:blur(20px);
+
     border-radius:18px;
+
     padding:8px;
+
 }
 
 button[data-baseweb="tab"]{
-    font-size:17px;
-    font-weight:700;
+
     color:#CBD5E1;
+
+    font-size:17px;
+
+    font-weight:700;
+
 }
 
 button[data-baseweb="tab"][aria-selected="true"]{
+
     color:#38BDF8;
+
 }
 
-/* -----------------------------
-   Headings
------------------------------- */
+/* Cards */
+
+[data-testid="stVerticalBlock"]{
+
+    border-radius:18px;
+
+}
+
+/* Headings */
 
 h1,h2,h3{
+
     color:white;
-    font-weight:800;
-    letter-spacing:-.4px;
+
 }
 
-/* -----------------------------
-   Text
------------------------------- */
+/* Paragraph */
 
-p,li,label{
+p,li{
+
     color:#E2E8F0;
+
 }
 
-/* -----------------------------
-   Alerts
------------------------------- */
-
-.stAlert{
-    border-radius:18px;
-}
-
-/* -----------------------------
-   Progress
------------------------------- */
-
-.stProgress>div>div{
-    background:linear-gradient(90deg,#2563EB,#06B6D4);
-}
-
-/* -----------------------------
-   Divider
------------------------------- */
+/* Divider */
 
 hr{
+
     border:1px solid rgba(255,255,255,.08);
+
 }
 
-/* -----------------------------
-   Mobile
------------------------------- */
+/* Alerts */
+
+.stSuccess,
+.stWarning,
+.stInfo{
+
+    border-radius:16px;
+
+}
+
+/* Progress */
+
+.stProgress>div>div{
+
+    background:linear-gradient(90deg,#2563EB,#06B6D4);
+
+}
+
+/* Mobile */
 
 @media(max-width:768px){
 
 .main-title{
-    font-size:42px;
+
+font-size:42px;
+
 }
 
 .sub-title{
-    font-size:17px;
+
+font-size:18px;
+
 }
 
 .block-container{
-    padding-top:1rem;
-}
 
-.stButton>button{
-    height:56px;
-}
+padding-top:1rem;
 
-.stTextInput input{
-    height:56px;
 }
 
 }
