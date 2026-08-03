@@ -26,6 +26,46 @@ def load_css():
             unsafe_allow_html=True
         )
 
+def add_bg_video():
+    with open("assets/background.mp4", "rb") as video:
+        video_bytes = video.read()
+
+    video_base64 = base64.b64encode(video_bytes).decode()
+
+    st.markdown(
+        f"""
+        <style>
+        #bg-video {{
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: -100;
+            opacity: 0.18;
+        }}
+
+        .stApp {{
+            background: transparent;
+        }}
+
+        .main .block-container {{
+            background: rgba(8, 14, 30, 0.72);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 1rem;
+        }}
+        </style>
+
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
+        </video>
+        """,
+        unsafe_allow_html=True,
+    )
+
 load_css()
 add_bg_video()
 # ===================================
